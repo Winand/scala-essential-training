@@ -61,14 +61,23 @@ object ListsDemo {
     )
   val exercise3 = extractPrimes(exercise2)
 
+  /**
+   * Convert list of numbers into list of its digits.
+   * Sign is ignored.
+   * @param l - list of numbers
+   * @return list of digits (numbers)
+   */
   def splitIntoDigits(l: List[Int]): List[Int] = {
     def getDigits(v: Int): List[Int] = {
       if (v == 0) List()
-      else getDigits(v / 10) :+ (v % 10)
+      else getDigits(v / 10) :+ (v.abs % 10)
     }
-    l.flatMap(getDigits)
+    l.flatMap(x =>
+      if (x == 0) List(0)
+      else getDigits(x)
+    )
   }
-  val exercise4 = splitIntoDigits(List(2, 10, 583, 46, 4))
+  val exercise4 = splitIntoDigits(List(2, 10, 0, 583, 46, 4, -23))
 
   def main(args: Array[String]): Unit = {
     println(aList)
