@@ -88,6 +88,22 @@ object ListsDemo {
   }
   val exercise4 = splitIntoDigits2(List(2, 10, 0, 583, 46, 4, -23))
 
+  // for comprehensions
+  val numbers = List(1, 2, 3, 4)
+  val colors = List("black", "white", "blue")
+  val combinations = numbers.flatMap(n => colors.map(c => s"$n-$c"))
+  val combinationsV2 = for {
+    n <- numbers  // <-- this is a 'generator'
+    c <- colors
+  } yield s"$n-$c"
+  // !! for comprehensions are not loops, but expressions
+  val chessLetters = List('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H')
+  val chessNumbers = List(1, 2, 3, 4, 5, 6, 7, 8)
+  val chessboard = for {
+    c <- chessLetters
+    n <- chessNumbers
+  } yield s"$c$n"
+
   def main(args: Array[String]): Unit = {
     println(aList)
     println(biggerList)
@@ -105,5 +121,10 @@ object ListsDemo {
     println(exercise2)
     println(exercise3)
     println(exercise4)
+
+    // for comprehensions
+    println(combinations)
+    println(combinationsV2)
+    println(chessboard)
   }
 }
