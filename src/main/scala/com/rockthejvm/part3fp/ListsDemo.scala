@@ -77,7 +77,16 @@ object ListsDemo {
       else getDigits(x)
     )
   }
-  val exercise4 = splitIntoDigits(List(2, 10, 0, 583, 46, 4, -23))
+
+  def splitIntoDigits2(l: List[Int]): List[Int] = {
+    def getDigits(v: Int): List[Int] = {
+      val vabs = v.abs
+      if (vabs < 10) List(vabs)
+      else getDigits(v / 10) :+ (vabs % 10)
+    }
+    l.flatMap(getDigits)
+  }
+  val exercise4 = splitIntoDigits2(List(2, 10, 0, 583, 46, 4, -23))
 
   def main(args: Array[String]): Unit = {
     println(aList)
